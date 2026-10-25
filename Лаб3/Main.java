@@ -5,11 +5,13 @@ import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.nio.charset.Charset;
 
 public class Main {
 
     private static final int TOP_WORDS = 30;
-    private static final Path INPUT_FILE = Path.of("src/txt/harry.txt");
+    private static final Path INPUT_FILE =
+        Path.of("..", "txt", "harry.txt");
 
     public static void main(String[] args) throws IOException {
         long startMemory = getUsedMemory();
@@ -33,7 +35,8 @@ public class Main {
     private static Map<String, Integer> countWords() throws IOException {
         Map<String, Integer> frequencies = new HashMap<>();
 
-        try (var lines = Files.lines(INPUT_FILE, StandardCharsets.UTF_8)) {
+        try (var lines = Files.lines(
+            INPUT_FILE, Charset.forName("windows-1252"))) {
             lines.forEach(line -> {
                 String normalizedLine = line
                         .replaceAll("[^A-Za-z ]", " ")
