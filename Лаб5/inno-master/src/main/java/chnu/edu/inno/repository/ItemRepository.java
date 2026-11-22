@@ -10,9 +10,11 @@ package chnu.edu.inno.repository;
 */
 
 import chnu.edu.inno.model.Item;
+import org.javers.spring.annotation.JaversSpringDataAuditable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@JaversSpringDataAuditable
 public interface ItemRepository extends MongoRepository<Item, String> {
 }
